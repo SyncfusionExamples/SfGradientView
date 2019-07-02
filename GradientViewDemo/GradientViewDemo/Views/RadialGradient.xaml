@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GradientViewDemo.Views.RadialGradient" BackgroundColor="LightBlue"
+              xmlns:local="clr-namespace:GradientViewDemo.Views"
+              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+              xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms">
+
+    <Grid>
+        <!--Background view as SfGradientView(radial)-->
+        <gradient:SfGradientView>
+            <gradient:SfGradientView.IsVisible>
+                <OnPlatform Android="True" iOS="True" UWP="False" /> <!--Don't have radial gradient support in UWP--> 
+            </gradient:SfGradientView.IsVisible>
+            <gradient:SfGradientView.BackgroundBrush>
+                <gradient:SfRadialGradientBrush Radius="1" Center="0.5,0.5">
+                    <gradient:SfRadialGradientBrush.GradientStops>
+                        <gradient:SfGradientStop Color="#A94381" Offset="0.0" />
+                        <gradient:SfGradientStop Color="#5415A8" Offset="1.0" />
+                    </gradient:SfRadialGradientBrush.GradientStops>
+                </gradient:SfRadialGradientBrush>
+            </gradient:SfGradientView.BackgroundBrush>
+        </gradient:SfGradientView>
+
+        <!--Main View-->
+        <Grid VerticalOptions="Center" Margin="20,40,20,0" RowSpacing="50">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <local:CustomEntry HeightRequest="45"   FontSize="14" HorizontalOptions="FillAndExpand" TextColor="White" BackgroundColor="Transparent"  
+                               Placeholder="Name" PlaceholderColor="White"/>
+
+            <local:CustomEntry HeightRequest="45"  FontSize="14"  HorizontalOptions="FillAndExpand" TextColor="White" Grid.Row="1"
+                               BackgroundColor="Transparent" Placeholder="Password" PlaceholderColor="White" />
+
+            <StackLayout Orientation="Horizontal" Margin="0,-50,0,0" Grid.Row="2" HeightRequest="30" VerticalOptions="Center" >
+                <!--Syncfusion Switch-->
+                <buttons:SfSwitch  AllowIndeterminateState="False" VisualType="Custom">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Off">
+                                <VisualState.Setters>
+                                    <Setter Property="SwitchSettings">
+                                        <Setter.Value>
+                                            <buttons:MaterialSwitchSettings x:TypeArguments="buttons:OffState"
+                                                                                  HasThumbShadow="False"
+                                                                                  ThumbBorderWidth="0.5"
+                                                                                  ThumbBorderColor="#FFFF0199"
+                                                                                  TrackBorderWidth="0.5"
+                                                                                  TrackBorderColor="#AAFF0199">
+                                                <buttons:MaterialSwitchSettings.ThumbGradient>
+                                                    <gradient:SfLinearGradientBrush StartPoint="0.5, 0" EndPoint="0.5, 1">
+                                                        <gradient:SfLinearGradientBrush.GradientStops>
+                                                            <gradient:SfGradientStop Color="#FFFF0199" Offset="0.0" />
+                                                            <gradient:SfGradientStop Color="#FFFFFFFF" Offset="1.0" />
+                                                        </gradient:SfLinearGradientBrush.GradientStops>
+                                                    </gradient:SfLinearGradientBrush>
+                                                </buttons:MaterialSwitchSettings.ThumbGradient>
+                                                <buttons:MaterialSwitchSettings.TrackGradient>
+                                                    <gradient:SfLinearGradientBrush>
+                                                        <gradient:SfLinearGradientBrush.GradientStops>
+                                                            <gradient:SfGradientStop Color="#55FF0199" Offset="0.0" />
+                                                            <gradient:SfGradientStop Color="#FFFFFFFF" Offset="1.0" />
+                                                        </gradient:SfLinearGradientBrush.GradientStops>
+                                                    </gradient:SfLinearGradientBrush>
+                                                </buttons:MaterialSwitchSettings.TrackGradient>
+                                            </buttons:MaterialSwitchSettings>
+                                        </Setter.Value>
+                                    </Setter>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </buttons:SfSwitch>
+                <Label Text="Remember me?" Margin="10,0,0,0"  TextColor="White"/>
+            </StackLayout>
+            
+            <!--Syncfusion Button-->
+            <buttons:SfButton HeightRequest="40" WidthRequest="150" CornerRadius="20" HorizontalOptions="Center" VerticalOptions="Center"
+                              Grid.Row="3" Text="LOG IN" >
+                <buttons:SfButton.BackgroundGradient>
+                    <gradient:SfRadialGradientBrush Radius="1">
+                        <gradient:SfRadialGradientBrush.GradientStops>
+                            <gradient:SfGradientStop Color="#FFB57B" Offset="0"/>
+                            <gradient:SfGradientStop Color="#FF5361" Offset="1"/>
+                        </gradient:SfRadialGradientBrush.GradientStops>
+                    </gradient:SfRadialGradientBrush>
+                </buttons:SfButton.BackgroundGradient>
+            </buttons:SfButton>
+        </Grid>
+    </Grid>
+</ContentPage>
